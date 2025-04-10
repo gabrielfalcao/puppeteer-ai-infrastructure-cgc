@@ -1,0 +1,30 @@
+name: "IMPEDING SKYNET WARNING"
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  ubuntu:
+    name: PHOTO
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/puppeteer/puppeteer:24.4.0
+      options: "--privileged --user root"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Screenshot A.I. Concerns
+        run: bash warning
+      - name: upload screenshot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots
+
+      - name: upload log artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: logs

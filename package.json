@@ -1,0 +1,27 @@
+{
+  "name": "puppeteer-ai-infrastructure-cgc",
+  "version": "0.0.1",
+  "description": "feed github actions with its own concerns",
+  "homepage": "https://github.com/gabrielfalcao/puppeteer-ai-infrastructure-cgc",
+  "bugs": {
+    "url": "https://github.com/gabrielfalcao/puppeteer-ai-infrastructure-cgc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielfalcao/puppeteer-ai-infrastructure.git"
+  },
+  "license": "ISC",
+  "author": "Gabriel Falcão",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "install-browsers": "puppeteer browsers install chrome",
+    "act": "ts-node actions.js"
+  },
+    "dependencies": {
+    "hash.js": "^1.1.7",
+    "puppeteer": "^24.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

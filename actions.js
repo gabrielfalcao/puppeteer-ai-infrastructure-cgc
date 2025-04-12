@@ -2,6 +2,8 @@ const puppeteer = require("puppeteer");
 
 const fs = require("node:fs/promises");
 const { sha256 } = require("hash.js");
+const WIDTH = 2560;
+const HEIGHT = 1600;
 
 function slugify(value) {
   return value
@@ -123,13 +125,29 @@ async function photo_ai_concern(url) {
     await logResponse(url, response);
   });
 
-  await page.setViewport({ width: 1080, height: 1024 });
+  await page.setViewport({ width: WIDTH, height: HEIGHT });
   await page.goto(url.toString(), {
     waitUntil: "networkidle2",
   });
-
   await page.screenshot({
-    path: `screenshots/${aiSlug}.png`,
+    path: `screenshots/${aiSlug}-0.png`,
+  });
+  await page.evaluate(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+  await page.waitForNetworkIdle();
+  await page.screenshot({
+    path: `screenshots/${aiSlug}-1.png`,
+  });
+  await page.mouse.wheel({
+    deltaY: HEIGHT,
+  });
+  await page.screenshot({
+    path: `screenshots/${aiSlug}-2.png`,
+  });
+  await page.reload();
+  await page.screenshot({
+    path: `screenshots/${aiSlug}-3.png`,
   });
 
   await browser.close();
